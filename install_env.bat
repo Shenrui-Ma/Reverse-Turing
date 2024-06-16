@@ -102,7 +102,7 @@ if errorlevel 1 (
 )
 
 echo Installing required packages...
-%PIP_CMD% install fastapi requests pydantic uvicorn pillow nltk websocket-client python-dotenv numpy python-docx transformers faiss-cpu
+%PIP_CMD% install fastapi requests pydantic uvicorn pillow nltk websocket-client python-dotenv numpy python-docx transformers faiss-cpu torch
 
 if errorlevel 1 (
     echo.

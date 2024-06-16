@@ -1,50 +1,33 @@
 import os
-import json
 import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-
-PROCESSED_DATA_DIR = "../data/processed/"
-EMBEDDINGS_DATA_DIR = "../data/embeddings/"
+from utils import embed_texts, save_embeddings
 
 
-def vectorize_texts(texts):
-    vectorizer = TfidfVectorizer()
-    vectors = vectorizer.fit_transform(texts)
-    return vectors.toarray(), vectorizer
-
-
-def vectorize_files():
-    if not os.path.exists(EMBEDDINGS_DATA_DIR):
-        os.makedirs(EMBEDDINGS_DATA_DIR)
-
-    texts = []
-    filenames = []
-
-    for filename in os.listdir(PROCESSED_DATA_DIR):
+def load_processed_texts(processed_dir):
+    documents = []
+    for filename in os.listdir(processed_dir):
         if filename.endswith(".txt"):
             with open(
-                os.path.join(PROCESSED_DATA_DIR, filename), "r", encoding="utf-8"
+                os.path.join(processed_dir, filename), "r", encoding="utf-8"
             ) as file:
-                text = file.read()
-                texts.append(text)
-                filenames.append(filename)
+                documents.append(file.read())
+    return documents
 
-    vectors, vectorizer = vectorize_texts(texts)
 
-    for i, filename in enumerate(filenames):
-        embedding_filename = os.path.join(
-            EMBEDDINGS_DATA_DIR, filename.replace(".txt", ".npy")
-        )
-        np.save(embedding_filename, vectors[i])
-        print(f"Vectorized {filename} and saved to {embedding_filename}")
+def main():
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    processed_dir = os.path.join(project_root, "data", "processed")
+    embeddings_dir = os.path.join(project_root, "data", "embeddings")
 
-    # 保存TF-IDF向量器以便后续使用
-    with open(
-        os.path.join(EMBEDDINGS_DATA_DIR, "vectorizer.json"), "w", encoding="utf-8"
-    ) as vectorizer_file:
-        json.dump(vectorizer.vocabulary_, vectorizer_file)
-    print("Saved TF-IDF vectorizer vocabulary to vectorizer.json")
+    # 加载处理后的文本
+    documents = load_processed_texts(processed_dir)
+
+    # 生成嵌入向量
+    embeddings = embed_texts(documents)
+
+    # 保存嵌入向量
+    save_embeddings(embeddings_dir, embeddings)
 
 
 if __name__ == "__main__":
-    vectorize_files()
+    main()
