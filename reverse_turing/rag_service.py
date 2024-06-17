@@ -41,7 +41,7 @@ class RAGService:
         outputs = self.model(**inputs)
         return outputs.last_hidden_state.mean(dim=1).detach().numpy()
 
-    def retrieve(self, query: str, top_n: int = 5) -> List[str]:
+    def retrieve(self, query: str, top_n: int = 3) -> List[str]:
         query_embedding = self.embed_text(query)
         distances, indices = self.index.search(query_embedding, top_n)
         corpus = self.load_processed_texts()

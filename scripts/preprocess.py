@@ -13,6 +13,8 @@ def load_docx_files(raw_dir):
                 full_text.append(para.text)
             documents.append("\n".join(full_text))
             filenames.append(filename)
+            print(f"Loaded document: {filename}")
+    print(f"Total documents loaded: {len(documents)}")
     return documents, filenames
 
 
@@ -25,6 +27,8 @@ def save_processed_texts(processed_dir, documents, filenames):
             os.path.join(processed_dir, f"{base_name}.txt"), "w", encoding="utf-8"
         ) as file:
             file.write(doc)
+            print(f"Saved processed document: {base_name}.txt")
+    print(f"Total documents saved: {len(documents)}")
 
 
 def main():

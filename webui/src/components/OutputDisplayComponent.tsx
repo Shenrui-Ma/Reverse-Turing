@@ -47,8 +47,8 @@ function OutputDisplayComponent() {
     <div
       className="border-8 border-amber-500 rounded-lg p-4 m-4 bg-amber-100"
       style={{
-        width: "500px",
-        height: "950px",
+        width: "250px",
+        height: "475px",
         overflow: "auto",
         fontSize: "18px",
         fontFamily: "Arial, sans-serif",

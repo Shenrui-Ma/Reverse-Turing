@@ -1,35 +1,24 @@
 "use client";
-import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
-import Sidebar from "@/components/item-sidebar";
-import ItemAuthor from "@/components/item-author";
-import ButtonShare from "@/components/button-share";
-import BubbleFurina from "@/components/bubble-furina";
-import ItemCommentCard from "@/components/item-comment-card";
-import CodeBlock from "@/components/code-block";
-import InputComponent from "@/components/InputComponent";
-import OutputDisplayComponent from "@/components/OutputDisplayComponent";
-import ChatHistory from "@/components/ChatHistory";
-import { MessageProvider } from "@/components/MessageContext";
+import NPC from "@/components/npc";
+import Player from "@/components/player";
 
-export default function Test() {
+export default function TestPage() {
+  const imagePaths = [
+    "/images/hutao.png",
+    "/images/chiori.png",
+    "/images/arlecchino.png",
+  ];
+
   return (
-    <div className="flex relative">
-      <Sidebar />
-      <ItemAuthor />
-      <ButtonShare />
-      <MessageProvider>
-        <div className="mt-4 ml-20">
-          <InputComponent character={"Arlecchino"} />
-        </div>
-        <div className="absolute right-20 top-10">
-          <OutputDisplayComponent />
-        </div>
-        <div className="absolute bottom-10 left-20 w-1/2 h-1/2 overflow-auto">
-          <ChatHistory />
-        </div>
-      </MessageProvider>
+    <div className="flex flex-col h-full">
+      <div className="flex justify-center items-center h-screen mt-[-25vh]">
+        {imagePaths.map((path, index) => (
+          <NPC key={index} imagePath={path} />
+        ))}
+      </div>
+      <div className="flex relative justify-center mt-[-55vh]">
+        <Player imagePath="/images/default.jpg" />
+      </div>
     </div>
   );
 }
