@@ -12,23 +12,28 @@ function InputComponent({ character }) {
 
   const handleSubmit = async () => {
     console.log("前端接收输入:", input);
-    addMessage(input, "user"); // 添加用户输入到消息历史
+    // addMessage(input, "user"); // 添加用户输入到消息历史
 
     const response = await fetch("http://127.0.0.1:8000/message", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ message: input, character: character }),
+      body: JSON.stringify({ query: input, character: character }),
     });
 
     if (response.ok) {
-      const data = await response.json();
-      addMessage(data.result, "bot"); // 添加模型返回的消息到消息历史
-      setMessage(data.result); // 设置当前消息到展示框
+      // const data = await response.json();
+      // addMessage(data.result, "bot"); // 添加模型返回的消息到消息历史
+      // setMessage(data.result); // 设置当前消息到展示框
+      console.log("成功发送响应结果给后端");
+    } else {
+      console.log("后端返回错误");
     }
 
-    console.log("前端尝试发送信息:", input);
+    console.log("前端尝试发送信息:", input, "给/message");
+    // 发送信息给后端
+
     setInput("");
   };
 

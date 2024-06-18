@@ -16,7 +16,7 @@ export default function Player(props: { imagePath: string }) {
             <div className="relative">
               <OutputDisplayComponent />
             </div>
-            <InputComponent character={"Hutao"} />
+            <InputComponent character={"米哈游的游戏《原神》里的角色胡桃。"} />
           </div>
         </div>
       </div>
