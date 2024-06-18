@@ -1,0 +1,6 @@
+运行install_env.bat安装需要的前后端环境（不要用魔法）
+
+然后运行start.bat加载程序（前端端口3000后端8000）
+
+第一次加载对话可能会比较慢，因为要从hugging-face hub下载bert 模型
+如果下载失败可以手动下载模型到根目录/models/bert-base-Chinese,下载地址https://huggingface.co/google-bert/bert-base-chinese/tree/main，需要下载config.json,pytorch_model.bin,tokenizer.json,tokenizer_config.json,vocab.txt

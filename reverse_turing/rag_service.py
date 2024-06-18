@@ -69,7 +69,7 @@ class RAGService:
         print(outputs.last_hidden_state.shape)
         return outputs.last_hidden_state.mean(dim=1).detach().numpy()
 
-    def retrieve(self, query: str, top_n: int = 3) -> List[str]:
+    def retrieve(self, query: str, top_n: int = 1) -> List[str]:
         try:
             query_embedding = self.embed_text(query)
 

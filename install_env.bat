@@ -115,6 +115,19 @@ if errorlevel 1 (
     echo Successfully installed all packages.
 )
 
+:: 在项目根目录安装 volcengine-python-sdk[ark]
+echo Installing volcengine-python-sdk[ark]...
+%PIP_CMD% install volcengine-python-sdk[ark]
+
+if errorlevel 1 (
+    echo.
+    echo Failed to install volcengine-python-sdk[ark].
+    goto end
+) else (
+    echo.
+    echo Successfully installed volcengine-python-sdk[ark].
+)
+
 echo Setting up Node.js and npm...
 call curl -o nodejs.msi https://nodejs.org/dist/v18.17.0/node-v18.17.0-x64.msi
 start /wait msiexec /i nodejs.msi /quiet /norestart
