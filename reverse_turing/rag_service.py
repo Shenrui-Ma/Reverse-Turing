@@ -8,7 +8,7 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "True"
 
 
 class RAGService:
-    def __init__(self, model_name: str = "bert-base-uncased"):
+    def __init__(self, model_name: str = "bert-base-chinese"):
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
         model_path = os.path.join(project_root, "models", model_name)
         # 调试
@@ -69,7 +69,7 @@ class RAGService:
         print(outputs.last_hidden_state.shape)
         return outputs.last_hidden_state.mean(dim=1).detach().numpy()
 
-    def retrieve(self, query: str, top_n: int = 1) -> List[str]:
+    def retrieve(self, query: str, top_n: int = 3) -> List[str]:
         try:
             query_embedding = self.embed_text(query)
 
@@ -84,17 +84,17 @@ class RAGService:
 
             # 返回结果, 取top_n个
             print("Returning the results...")
-            return [corpus[i] for i in indices[0]]
+            return str([corpus[i] for i in indices[0]])
         except Exception as e:
             print("Error in RAGService.retrieve:", str(e))
             raise
 
 
-# 示例用法
-if __name__ == "__main__":
-    rag_service = RAGService()
-    query = "你是谁？"
-    results = rag_service.retrieve(query)
-    print("retrieved results:")
-    for result in results:
-        print(result)
+# # 示例用法
+# if __name__ == "__main__":
+#     rag_service = RAGService()
+#     query = "你是谁？"
+#     results = rag_service.retrieve(query)
+#     print("retrieved results:")
+#     for result in results:
+#         print(result)

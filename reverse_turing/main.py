@@ -37,25 +37,19 @@ def read_root():
 
 @app.post("/message")
 async def receive_message(message: Message):
-    # 这里可以添加处理消息的逻辑
-    print("Received query:", message.query)
-    print("Received character:", message.character)
-    # 添加retrieved_docs
-    retrieved_docs = "等待检索..."
-    print("Retrieved docs:", retrieved_docs)
-
-    # # 调用RAG服务进行检索
-    # print("Initializing RAG service...")
-    # rag_service = RAGService()
-    # print("RAG service initialized successfully")
-    # retrieved_docs = rag_service.retrieve(message.query)
-
     try:
+        # 这里可以添加处理消息的逻辑
+        print("Received query:", message.query)
+        print("Received character:", message.character)
+        # 添加retrieved_docs
+        retrieved_docs = "等待检索..."
+        print("Retrieved docs:", retrieved_docs)
+
         # 调用RAG服务进行检索
         print("Initializing RAG service...")
         rag_service = RAGService()
         print("RAG service initialized successfully")
-        retrieved_docs = rag_service.retrieve(message.query)
+        retrieved_docs = rag_service.retrieve(message.character + message.query)
         print("Retrieved docs:", retrieved_docs)
         combined_input = (
             message.query + " " + " ".join(retrieved_docs) + " " + message.character
@@ -65,18 +59,13 @@ async def receive_message(message: Message):
         print("Calling DoubaoLite model...")
         result = chat_with_Doubao(
             message.query,
-            "你扮演的角色是：" + retrieved_docs,
+            retrieved_docs,
         )
         print("AI response:", result)
 
         # 生成语音
         # audio_file_path = generate_speech(result)
 
-        # return {
-        #     "status": "Message received successfully",
-        #     "result": result,
-        #     "audio_file": audio_file_path,
-        # }
         return {
             "status": "Message received successfully",
             "result": result,

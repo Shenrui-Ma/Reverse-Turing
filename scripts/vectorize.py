@@ -17,7 +17,7 @@ def load_processed_texts(processed_dir):
     return documents, filenames
 
 
-def embed_texts(documents, model_name="models/bert-base-uncased"):
+def embed_texts(documents, model_name="models/bert-base-chinese"):
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModel.from_pretrained(model_name)
     embeddings = []

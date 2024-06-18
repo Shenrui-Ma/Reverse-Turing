@@ -21,7 +21,6 @@ function OutputDisplayComponent() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // 检查返回的数据中是否包含 ERNIE 模型的结果
         // if (data.result) {
         //   // 如果包含，将结果设置为 message 状态
         setMessage(data.result);
