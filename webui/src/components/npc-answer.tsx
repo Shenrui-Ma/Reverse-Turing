@@ -1,34 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { MessageContext, MessageContextType } from "./MessageContext";
 import CodeBlock from "./code-block";
 
-function OutputDisplayComponent() {
+function NPCAnswer() {
   const context = useContext(MessageContext);
 
   if (!context) {
     return null; // 或者返回一个加载状态
   }
 
-  const { message, setMessage } = context as MessageContextType;
-
-  useEffect(() => {
-    fetch("http://localhost:8000/message", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message: "默认信息" }), // 这里可以根据需要修改默认消息
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // if (data.result) {
-        //   // 如果包含，将结果设置为 message 状态
-        setMessage(data.result);
-        // }
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-    console.log("useEffect一次");
-  }, [setMessage]);
+  const { message } = context as MessageContextType;
 
   const renderContent = (text: string) => {
     const parts = text.split(/(```[\s\S]*?```)/g); // 使用正则表达式分割文本
@@ -53,9 +34,9 @@ function OutputDisplayComponent() {
         fontFamily: "Arial, sans-serif",
       }}
     >
-      {message ? renderContent(message) : "Waiting for your words..."}
+      {message ? renderContent(message) : "Waiting for question..."}
     </div>
   );
 }
 
-export default OutputDisplayComponent;
+export default NPCAnswer;

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import uvicorn
@@ -85,8 +85,11 @@ def get_prompt():
 
 
 @app.post("/question")
-async def get_question(question_type):
+async def get_question(request: Request):
     try:
+        question_type = await request.body()  # 获取原始请求体内容
+        question_type = question_type.decode("utf-8")  # 将字节流解码为字符串
+        print("Received question_type:", question_type)  # 打印接收到的 question_type
         message = Message(query="根据设定随机生成一个问题", character=question_type)
         result = chat_with_Doubao(
             message.query,

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import InputComponent from "@/components/InputComponent";
 import ImageDisplayComponent from "@/components/ImageDisplayComponent";
 import { MessageProvider } from "@/components/MessageContext";
-import OutputDisplayComponent from "@/components/OutputDisplayComponent";
+import PlayerAnswer from "./player-answer";
 
 export default function Player(props: { imagePath: string }) {
   return (
@@ -14,7 +14,7 @@ export default function Player(props: { imagePath: string }) {
             <div className="absolute left-0 flex flex-col items-center bg-pink-400"></div>
             <ImageDisplayComponent src={props.imagePath} />
             <div className="relative">
-              <OutputDisplayComponent />
+              <PlayerAnswer />
             </div>
             <InputComponent character={"胡桃"} />
           </div>

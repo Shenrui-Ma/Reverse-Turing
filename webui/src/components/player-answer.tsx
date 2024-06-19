@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { MessageContext, MessageContextType } from "./MessageContext";
 import CodeBlock from "./code-block";
 
-function OutputDisplayComponent() {
+function PlayerAnswer() {
   const context = useContext(MessageContext);
 
   if (!context) {
@@ -44,7 +44,7 @@ function OutputDisplayComponent() {
 
   return (
     <div
-      className="border-8 border-amber-500 rounded-lg p-4 m-4 bg-amber-100"
+      className="border-8 border-gray-400 rounded-lg p-4 m-4 bg-gray-100"
       style={{
         width: "250px",
         height: "425px",
@@ -53,9 +53,9 @@ function OutputDisplayComponent() {
         fontFamily: "Arial, sans-serif",
       }}
     >
-      {message ? renderContent(message) : "Waiting for your words..."}
+      {message ? renderContent(message) : "Will place the answer here."}
     </div>
   );
 }
 
-export default OutputDisplayComponent;
+export default PlayerAnswer;
