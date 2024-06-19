@@ -75,13 +75,34 @@ async def receive_message(message: Message):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/get-prompt")
+@app.get("/get_prompt")
 def get_prompt():
     """
     返回一个预设的提示信息。
     """
     # 这里可以根据实际情况返回不同的提示信息
     return {"prompt": "请输入您的图像生成描述"}
+
+
+@app.post("/question")
+async def get_question(question_type):
+    try:
+        message = Message(query="根据设定随机生成一个问题", character=question_type)
+        result = chat_with_Doubao(
+            message.query,
+            message.character,
+        )
+        print("AI response:", result)
+
+        # 生成语音
+        # audio_file_path = generate_speech(result)
+
+        return {
+            "status": "Message received successfully",
+            "result": result,
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 if __name__ == "__main__":
