@@ -61,6 +61,17 @@ Run in the root directory / 在根目录下运行
 ./start.sh
 ```
 
+## Example / 例子
+
+<div class="flex flex-col items-center">
+    <div class="mb-4">
+        <img alt="README1" src="webui\public\images\README1.png" class="w-[100px]"/>
+    </div>
+    <div>
+        <img alt="README2" src="webui\public\images\README2.png" class="w-[100px]"/>
+    </div>
+</div>
+
 ## Note / 说明
 
 1.The program now integrates my personal ByteDance Doubao-pro-128k model API, but I'm unsure how long it will be available. If you want to use your own API, you can create a new .env file in the root directory and add the line API_KEY=<your API_KEY>.
