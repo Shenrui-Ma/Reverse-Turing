@@ -1,7 +1,6 @@
 # Reverse Turing
 
 <div>
-English | [简体中文](README-zh.md)  <br>
 <a target="_blank" href="https://space.bilibili.com/12595237?spm_id_from=333.1007.0.0">
 <img alt="bilibili_acount" src="webui\public\images\bilibili_acount.png" style="width: 150px;"/>
  <p style="font-size: 14px; color: #333;">Contact me: <a href="mailto:yapuhu042228@163.com" style="color: #0066cc;">yapuhu042228@163.com</a> or <a href="mailto:shenruima@gmail.com" style="color: #0066cc;">shenruima@gmail.com</a></p>
