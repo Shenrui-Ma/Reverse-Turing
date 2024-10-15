@@ -64,9 +64,6 @@ Run in the root directory / 在根目录下运行
 ## Example / 例子
 
 <div class="flex flex-col items-center">
-    <div class="mb-4">
-        <img alt="README1" src="webui\public\images\README1.png" class="w-[100px]"/>
-    </div>
     <div>
         <img alt="README2" src="webui\public\images\README2.png" class="w-[100px]"/>
     </div>
