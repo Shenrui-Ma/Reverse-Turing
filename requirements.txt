@@ -1,3 +1,4 @@
+# python 最好 > 3.8
 annotated-types==0.7.0
 anyio==4.4.0
 beautifulsoup4==4.12.3
