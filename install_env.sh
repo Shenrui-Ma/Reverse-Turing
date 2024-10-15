@@ -21,7 +21,6 @@ PYTHON_CMD="$PWD/turenv/env/bin/python"
 MINICONDA_DOWNLOAD_URL="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
 NODEJS_DOWNLOAD_URL="https://nodejs.org/dist/v18.17.0/node-v18.17.0-linux-x64.tar.xz"
 
-# 检查conda是否已安装
 if ! command -v conda &> /dev/null; then
     echo "Downloading Miniconda..."
     mkdir -p "$INSTALL_DIR/conda"
@@ -44,7 +43,6 @@ if ! command -v conda &> /dev/null; then
     rm "$INSTALL_DIR/conda/miniconda_installer.sh"
 fi
 
-# 创建conda环境
 if [ ! -d "$INSTALL_ENV_DIR" ]; then
     echo "Creating Conda Environment..."
     "$CONDA_ROOT_PREFIX/bin/conda" create --no-shortcuts -y -k --prefix "$INSTALL_ENV_DIR" python=3.8
@@ -55,7 +53,6 @@ if [ ! -d "$INSTALL_ENV_DIR" ]; then
     fi
 fi
 
-# 激活conda环境
 source "$CONDA_ROOT_PREFIX/bin/activate" "$INSTALL_ENV_DIR"
 
 if [ $? -ne 0 ]; then
@@ -65,7 +62,6 @@ else
     echo "Successfully created and activated env."
 fi
 
-# 安装所需的Python包
 echo "Installing required packages..."
 "$PIP_CMD" install fastapi requests pydantic uvicorn pillow nltk websocket-client python-dotenv numpy python-docx transformers faiss-cpu torch volcengine-python-sdk[ark]
 
@@ -76,17 +72,14 @@ else
     echo "Successfully installed all packages."
 fi
 
-# 安装Node.js
 echo "Setting up Node.js and npm..."
 wget -O nodejs.tar.xz "$NODEJS_DOWNLOAD_URL"
 tar -xJf nodejs.tar.xz -C "$INSTALL_DIR"
 mv "$INSTALL_DIR/node-v18.17.0-linux-x64" "$NODEJS_DIR"
 rm nodejs.tar.xz
 
-# 更新PATH以包含Node.js和npm
 export PATH="$PATH:$NODEJS_DIR/bin"
 
-# 切换到webui目录并安装项目依赖
 cd webui
 npm install
 
@@ -97,7 +90,6 @@ else
     echo "Successfully installed project dependencies."
 fi
 
-# 安装pnpm
 npm install -g pnpm
 
 if [ $? -ne 0 ]; then
@@ -107,7 +99,6 @@ else
     echo "Successfully installed pnpm."
 fi
 
-# 使用pnpm安装node_modules
 pnpm install
 
 if [ $? -ne 0 ]; then
