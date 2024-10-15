@@ -12,7 +12,7 @@
 I do not hold any responsibility for any illegal usage of the codebase. Please refer to your local laws about DMCA and other related laws.  
 我不对代码库的任何非法使用承担任何责任. 请参阅您当地关于 DMCA (数字千年法案) 和其他相关法律法规.
 
-## Quick Start / 快速开始
+## Features / 特性
 
 Users attempt to mimic the language habits of LLMs as closely as possible, concealing their human identity, and persist in maintaining this facade for as many rounds as possible without being discovered. Users, along with other chatbots connected to ByteDance's Douyin large language model, participate as characters. In each round, a random question is generated. The user and other chatbots each provide their own answers to this question, and then collectively vote on who seems most human-like.
 用户尽可能模仿 LLM 的语言习惯，隐藏人类身份，坚持尽可能多轮次不被发现。用户与其他接入字节豆包大模型的聊天机器人作为参与角色，每回合随机生成一个问题，用户与其他机器人就该问题各自给出自己的回答，并一起投票谁最像人类。
